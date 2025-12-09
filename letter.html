@@ -3,28 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Написать письмо Деду Морозу</title>
+  <title>Письмо Деду Морозу</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="letter-body">
   <header>
     <nav>
-      <a href="index.html">Пейзаж</a>
-      <a href="letter.html">Написать письмо</a>
+      <a href="index.html">🎄 Пейзаж</a>
+      <a href="letter.html">✉️ Написать письмо</a>
     </nav>
   </header>
 
   <main class="letter-page">
-    <h2>Напиши письмо Деду Морозу 🎁</h2>
+    <h1>Письмо Дедушке Морозу 🎅</h1>
+    <p class="subtitle">Он обязательно прочитает твоё письмо и исполнит самое заветное желание!</p>
+
     <form id="letterForm">
       <label for="name">Твоё имя:</label>
-      <input type="text" id="name" required><br><br>
+      <input type="text" id="name" required placeholder="Например: Анна">
 
-      <label for="message">Твоё письмо:</label><br>
-      <textarea id="message" rows="6" cols="50" placeholder="Дорогой Дедушка Мороз..." required></textarea><br><br>
+      <label for="message">Твоё письмо:</label>
+      <textarea id="message" rows="6" placeholder="Дорогой Дедушка Мороз! Я в этом году очень старался..." required></textarea>
 
-      <button type="submit">Отправить письмо</button>
+      <button type="submit">Отправить письмо в Великий Устюг! 🎁</button>
     </form>
+
     <p id="confirmation"></p>
   </main>
 
@@ -32,7 +35,7 @@
     document.getElementById('letterForm').addEventListener('submit', function(e) {
       e.preventDefault();
       document.getElementById('confirmation').textContent = 
-        "Спасибо! Твоё письмо отправлено Деду Морозу! 🎅";
+        "✨ Письмо отправлено! Дед Мороз уже читает его у камина!";
       document.getElementById('letterForm').reset();
     });
   </script>
