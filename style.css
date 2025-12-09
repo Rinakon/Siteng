@@ -1,0 +1,140 @@
+/* Общие стили */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to bottom, #1a5e8a, #0d2b45);
+  color: white;
+  min-height: 100vh;
+}
+
+header nav {
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+
+header nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 1.2em;
+}
+
+header nav a:hover {
+  text-decoration: underline;
+}
+
+/* Главная страница — пейзаж */
+.scene {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Снег */
+.snow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle, white 1px, transparent 1px);
+  background-size: 20px 20px;
+  animation: fall 10s linear infinite;
+}
+
+@keyframes fall {
+  to { background-position: 0 1000px; }
+}
+
+/* Ёлка */
+.tree {
+  position: absolute;
+  bottom: 50px;
+  left: 50px;
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 150px solid #0a5c20;
+}
+
+/* Дед Мороз */
+.santa {
+  position: absolute;
+  bottom: 50px;
+  right: 100px;
+  width: 100px;
+  height: 150px;
+}
+
+.santa-body {
+  width: 60px;
+  height: 80px;
+  background: red;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+}
+
+.santa-arm {
+  width: 20px;
+  height: 60px;
+  background: red;
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  transform-origin: bottom right;
+  animation: wave 1.5s infinite ease-in-out;
+}
+
+@keyframes wave {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-30deg); }
+}
+
+/* Страница письма */
+.letter-page {
+  padding: 40px;
+  text-align: center;
+}
+
+.letter-page h2 {
+  margin-bottom: 20px;
+}
+
+.letter-page input,
+.letter-page textarea {
+  padding: 10px;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 8px;
+  border: none;
+}
+
+.letter-page button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.letter-page button:hover {
+  background: #b30000;
+}
+
+#confirmation {
+  margin-top: 15px;
+  color: #ffcc00;
+  font-weight: bold;
+}
