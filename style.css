@@ -6,135 +6,380 @@
 }
 
 body {
-  font-family: 'Arial', sans-serif;
-  background: linear-gradient(to bottom, #1a5e8a, #0d2b45);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to bottom, #0b2a45, #061426);
   color: white;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
+/* Навигация */
 header nav {
   padding: 15px;
   background: rgba(0, 0, 0, 0.4);
   text-align: center;
+  position: relative;
+  z-index: 10;
 }
 
 header nav a {
   color: white;
   text-decoration: none;
-  margin: 0 15px;
-  font-size: 1.2em;
+  margin: 0 25px;
+  font-size: 1.3em;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: background 0.3s;
 }
 
 header nav a:hover {
-  text-decoration: underline;
+  background: rgba(255, 255, 255, 0.15);
 }
 
-/* Главная страница — пейзаж */
+/* Сцена */
 .scene {
   position: relative;
   height: 100vh;
   overflow: hidden;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  padding-bottom: 40px;
+  padding-top: 60px;
 }
 
-/* Снег */
-.snow {
+/* Снегопад */
+.snowflakes {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: 
-    radial-gradient(circle, white 1px, transparent 1px);
-  background-size: 20px 20px;
-  animation: fall 10s linear infinite;
+  pointer-events: none;
+  z-index: 1;
 }
 
-@keyframes fall {
-  to { background-position: 0 1000px; }
+.snowflake {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.85;
 }
 
 /* Ёлка */
+.tree-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
 .tree {
-  position: absolute;
-  bottom: 50px;
-  left: 50px;
   width: 0;
   height: 0;
-  border-left: 50px solid transparent;
-  border-right: 50px solid transparent;
-  border-bottom: 150px solid #0a5c20;
+  border-left: 70px solid transparent;
+  border-right: 70px solid transparent;
+  border-bottom: 200px solid #0a5c20;
 }
+
+.tree-pot {
+  width: 50px;
+  height: 30px;
+  background: #5d4037;
+  border-radius: 5px;
+  margin-top: -10px;
+}
+
+/* Огоньки */
+.lights {
+  position: absolute;
+  top: 40px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  width: 140px;
+  justify-content: center;
+}
+
+.light {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: twinkle 1.5s infinite alternate;
+}
+.light:nth-child(2) { animation-delay: 0.2s; }
+.light:nth-child(3) { animation-delay: 0.4s; }
+.light:nth-child(4) { animation-delay: 0.6s; }
+.light:nth-child(5) { animation-delay: 0.8s; }
+.light:nth-child(6) { animation-delay: 1.0s; }
+
+.red    { background: #ff3333; }
+.blue   { background: #3399ff; }
+.yellow { background: #ffcc00; }
+.green  { background: #33cc33; }
+.purple { background: #cc66ff; }
+.orange { background: #ff9933; }
+
+@keyframes twinkle {
+  from { opacity: 0.4; transform: scale(0.8); }
+  to   { opacity: 1;   transform: scale(1.2); }
+}
+
+/* Подарки */
+.gifts {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.gift {
+  width: 40px;
+  height: 30px;
+  position: relative;
+}
+.gift::before, .gift::after {
+  content: '';
+  position: absolute;
+  background: white;
+}
+.gift::before {
+  width: 3px;
+  height: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.gift::after {
+  width: 100%;
+  height: 3px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.gift.red    { background: crimson; }
+.gift.green  { background: forestgreen; }
+.gift.blue   { background: deepskyblue; }
+
+/* Снеговик */
+.snowman {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
+.snowman-head {
+  width: 50px;
+  height: 50px;
+  background: white;
+  border-radius: 50%;
+  position: relative;
+  margin-bottom: -10px;
+  z-index: 3;
+}
+
+.eye {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: black;
+  border-radius: 50%;
+  top: 18px;
+}
+.eye.left  { left: 12px; }
+.eye.right { right: 12px; }
+
+.smile {
+  position: absolute;
+  width: 20px;
+  height: 10px;
+  border-bottom: 2px solid black;
+  border-radius: 0 0 50% 50%;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.snowman-body {
+  width: 70px;
+  height: 70px;
+  background: white;
+  border-radius: 50%;
+}
+
+.snowman-arm {
+  position: absolute;
+  width: 40px;
+  height: 4px;
+  background: saddlebrown;
+  bottom: 35px;
+}
+.snowman-arm.left  { transform: rotate(-25deg); left: -40px; }
+.snowman-arm.right { transform: rotate(25deg); right: -40px; left: auto; }
 
 /* Дед Мороз */
 .santa {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
+.santa-hat {
+  width: 50px;
+  height: 50px;
+  background: red;
+  border-radius: 50% 50% 0 0;
+  position: relative;
+  margin-bottom: -10px;
+  z-index: 4;
+}
+.santa-hat::after {
+  content: '';
   position: absolute;
-  bottom: 50px;
-  right: 100px;
-  width: 100px;
-  height: 150px;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.santa-face {
+  width: 40px;
+  height: 40px;
+  background: #ffdddd;
+  border-radius: 50%;
+  position: relative;
+  z-index: 3;
+  margin-bottom: -5px;
+}
+
+.santa-eye {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: black;
+  border-radius: 50%;
+  top: 14px;
+}
+.santa-eye.left  { left: 10px; }
+.santa-eye.right { right: 10px; }
+
+.santa-smile {
+  position: absolute;
+  width: 20px;
+  height: 10px;
+  border-bottom: 2px solid #8B0000;
+  border-radius: 0 0 50% 50%;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.santa-beard {
+  width: 60px;
+  height: 40px;
+  background: white;
+  border-radius: 50%;
+  margin-bottom: -10px;
 }
 
 .santa-body {
   width: 60px;
-  height: 80px;
+  height: 70px;
   background: red;
   border-radius: 50%;
-  position: absolute;
-  bottom: 0;
-  left: 20px;
 }
 
 .santa-arm {
-  width: 20px;
-  height: 60px;
+  width: 16px;
+  height: 50px;
   background: red;
   position: absolute;
-  bottom: 40px;
-  left: 0;
+  bottom: 60px;
+  left: -20px;
   transform-origin: bottom right;
-  animation: wave 1.5s infinite ease-in-out;
+  animation: wave 1.8s infinite ease-in-out;
+  z-index: 1;
 }
 
 @keyframes wave {
   0%, 100% { transform: rotate(0deg); }
-  50% { transform: rotate(-30deg); }
+  50%      { transform: rotate(-30deg); }
 }
 
 /* Страница письма */
+.letter-body {
+  background: linear-gradient(to bottom, #1a4a3d, #0d2b20);
+}
+
 .letter-page {
-  padding: 40px;
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  backdrop-filter: blur(5px);
   text-align: center;
 }
 
-.letter-page h2 {
-  margin-bottom: 20px;
+.letter-page h1 {
+  font-size: 2.2em;
+  margin-bottom: 10px;
+  color: #ffcc00;
+}
+
+.subtitle {
+  margin-bottom: 30px;
+  color: #aaffaa;
+}
+
+.letter-page label {
+  display: block;
+  margin: 15px 0 5px;
+  font-weight: bold;
 }
 
 .letter-page input,
 .letter-page textarea {
-  padding: 10px;
-  width: 80%;
-  max-width: 500px;
-  border-radius: 8px;
-  border: none;
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 2px solid #ffcc00;
+  background: rgba(0, 0, 0, 0.2);
+  color: white;
+  font-size: 1em;
+}
+
+.letter-page textarea {
+  resize: vertical;
+  min-height: 120px;
 }
 
 .letter-page button {
-  margin-top: 15px;
-  padding: 10px 20px;
-  background: red;
+  margin-top: 20px;
+  padding: 12px 24px;
+  background: #d32f2f;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 30px;
+  font-size: 1.1em;
   cursor: pointer;
+  transition: background 0.3s;
 }
 
 .letter-page button:hover {
-  background: #b30000;
+  background: #b71c1c;
 }
 
 #confirmation {
-  margin-top: 15px;
-  color: #ffcc00;
+  margin-top: 20px;
+  font-size: 1.1em;
+  color: #4caf50;
   font-weight: bold;
 }
+
+/* Анимация снега (CSS-ключевые кадры через JS) */
